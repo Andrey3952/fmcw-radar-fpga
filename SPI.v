@@ -13,7 +13,7 @@ module SPI(
 reg CLK1, CLK2, CLK3;
 reg MOSI1, MOSI2;
 reg CS1, CS2;
-
+ 
 
 always @(posedge clk or negedge rst) begin
     if (!rst) begin

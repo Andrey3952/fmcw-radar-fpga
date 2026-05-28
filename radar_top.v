@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module top_level (
+module radar_top (
     input  wire clk_50m,
     input  wire rst_btn,
     input  wire spi_clk,

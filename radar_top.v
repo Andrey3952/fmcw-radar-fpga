@@ -12,7 +12,7 @@ module radar_top (
 
     SPI my_spi_slave (
         .clk(clk_50m),
-        .rst(1'b1),           
+        .rst(rst_btn),           
         .CLK(spi_clk),
         .MOSI(spi_mosi),
         .CS(spi_cs),

@@ -12,12 +12,12 @@ module top_level (
 
     SPI my_spi_slave (
         .clk(clk_50m),
-        .rst(1'b1),           // Ресет надійно вимкнено
+        .rst(1'b1),           
         .CLK(spi_clk),
         .MOSI(spi_mosi),
         .CS(spi_cs),
         .MISO(spi_miso),
-        .data_rx(led),        // Знову підключаємо сюди діоди!
+        .data_rx(led),        
         .rx_done(),
         .data_tx(8'hCA)
     );

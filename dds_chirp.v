@@ -4,7 +4,7 @@ module dds_chirp(
     output reg [15:0] phase
 );
 
-localparam [15:0] FREQ_STEP = 16'd5;
+localparam [15:0] FREQ_STEP = 16'd1;
 
 reg [15:0] freq_acc;
 reg [15:0] phase_acc;
@@ -12,13 +12,18 @@ reg [15:0] phase_acc;
 
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
-        phase <= 16'b0;
-        phase_acc <= 16'b0;
         freq_acc <= 16'b0;
+        phase_acc <= 16'b0;
+        phase <= 16'b0;
     end else begin
-        freq_acc <= freq_acc + FREQ_STEP;
-        phase_acc <= phase_acc + freq_acc;
-        phase <= phase_acc;
+        if(freq_acc >= 16'd1638)begin
+            freq_acc <= 16'b0;
+            phase_acc <= 16'b0;
+        end else begin
+            freq_acc <= freq_acc + FREQ_STEP;
+            phase_acc <= phase_acc + freq_acc;
+            phase <= phase_acc;
+        end 
     end
 end
 

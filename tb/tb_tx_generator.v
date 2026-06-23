@@ -12,12 +12,7 @@ tx_generator generator(
     .wave_out(tb_wave_out)
 );
 
-always begin
-    tb_clk = 1'b0;
-    #10;
-    tb_clk = 1'b1;
-    #10;
-end
+always #10 tb_clk = ~tb_clk;
 
 initial begin
 $dumpfile("dump.vcd");
@@ -29,7 +24,7 @@ tb_rst = 1'b0;
 #100;
 
 tb_rst = 1'b1;
-#100000;
+#2800000;
 $finish;
 end
 

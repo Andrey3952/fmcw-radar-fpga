@@ -5,11 +5,29 @@ module tb_tx_generator;
 reg tb_clk;
 reg tb_rst;
 wire [7:0] tb_wave_out;
+wire [7:0] tb_echo_out;
+wire signed [15:0] tb_mix_out;
 
 tx_generator generator(
     .clk(tb_clk),
     .rst(tb_rst),
     .wave_out(tb_wave_out)
+);
+
+target_echo echo(
+    .clk(tb_clk),
+    .rst(tb_rst),
+    .echo_in  (tb_wave_out),
+    .delay_val(11'd500),
+    .echo_out (tb_echo_out)
+);
+
+mixer mix(
+    .clk(tb_clk),
+    .rst(tb_rst),
+    .tx_in(tb_wave_out),
+    .rx_in(tb_echo_out),
+    .mix_out(tb_mix_out)
 );
 
 always #10 tb_clk = ~tb_clk;

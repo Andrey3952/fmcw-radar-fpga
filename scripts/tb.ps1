@@ -1,0 +1,1 @@
+iverilog -o sim.out (Get-ChildItem -Recurse -Filter *.v | Where-Object { $_.Name -notmatch '_tb\.v$' -or $_.Name -eq 'tb_tx_generator.v' }).FullName; vvp sim.out; gtkwave dump.vcd
